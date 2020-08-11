@@ -2,7 +2,7 @@ name: Algorithmia - Multiple Algorithm Caller
 
 on:
   schedule:
-    - cron: "0 */12 * * *"
+    - cron: "*/5 * * * *"
 
 jobs:
   algorithmia-ci:
