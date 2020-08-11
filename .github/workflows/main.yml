@@ -1,0 +1,23 @@
+name: Algorithmia - Multiple Algorithm Caller
+
+on:
+  schedule:
+    - cron: "0 */12 * * *"
+
+jobs:
+  algorithmia-ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.0.0
+        with:
+          ref: ${{github.sha}}
+          path: algorithm
+      - name: Algorithmia - Multiple Algorithm Caller
+        uses: aslisabanci/algorithmia_multimodel_action@0.0.2        
+        with:
+          api_key: ${{ secrets.api_key }}
+          orchestrator_algo_path: asli/dynamicOrchestrator/0.1.0
+          parallel_algo_names: ["algorithmiahq/tensorflow_bert_example/0.1.0", "asli/EchoText/0.1.0"]
+          parallel_algo_input: ["hello1", "hello2"]
